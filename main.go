@@ -12,11 +12,11 @@ import (
 )
 
 var (
-	webUrl = flag.String("weburl", "localhost:8080", "web url")
-	// webCert = flag.String("webcert", "cert.pem", "web certificate")
-	// certKey = flag.String("certkey", "key.pem", "certificate key")
-	llmUrl  = flag.String("llmurl", "localhost:11434/api/generate", "llm url")
-	llModel = flag.String("model", "gemma3", "llm model")
+	web = flag.String("web", "localhost:8080", "Web server")
+	// cert = flag.String("cert", "cert.pem", "Web certificate")
+	// key = flag.String("key", "key.pem", "Certificate key")
+	llm   = flag.String("llm", "localhost:11434/api/generate", "LLM server")
+	model = flag.String("model", "gemma3", "LLM model")
 )
 
 func prompt(r *http.Request) (*http.Response, error) {
@@ -31,8 +31,8 @@ func prompt(r *http.Request) (*http.Response, error) {
 		return nil, err
 	}
 
-	request := ollama.Request{Model: *llModel, Prompt: message.Text}
-	httpResponse, err := request.SendRequest("http://" + *llmUrl)
+	request := ollama.Request{Model: *llm, Prompt: message.Text}
+	httpResponse, err := request.SendRequest("http://" + *llm)
 	if err != nil {
 		log.Println(err)
 		return nil, err
@@ -96,11 +96,11 @@ func viewHandler(w http.ResponseWriter, req *http.Request) {
 
 func main() {
 	flag.Parse()
-	fmt.Println("web:", *webUrl)
-	fmt.Println("llm:", *llmUrl, *llModel)
+	fmt.Println("Web:", *web)
+	fmt.Println("LLM:", *llm, *model)
 
 	http.HandleFunc("/", viewHandler)
 	http.HandleFunc("/prompt", promptHandler)
-	log.Fatal(http.ListenAndServe(*webUrl, nil))
+	log.Fatal(http.ListenAndServe(*web, nil))
 	// log.Fatal(http.ListenAndServeTLS(*webUrl, "cert.pem", "key.pem", nil))
 }

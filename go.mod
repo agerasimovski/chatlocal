@@ -1,9 +1,7 @@
-module module github.com/agerasimovski/llmwrap
+module github.com/agerasimovski/llmwrap
 
 go 1.25.5
 
-require (
-	asklocal.ch/ollama v0.0.0-00010101000000-000000000000
-)
+replace github.com/agerasimovski/llmapi => ./llmapi/
 
-replace github.com/agerasimovski/llmwrap => ./llmapi/
+require github.com/agerasimovski/llmapi v0.0.0-00010101000000-000000000000 // indirect
