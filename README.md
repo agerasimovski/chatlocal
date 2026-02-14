@@ -1,11 +1,8 @@
-# llmwrap
+# chatlocal
 An example web application that provides a browser-based interface for interacting with a locally deployed LLMs.
 
 Custum local LLM deployment could be interesting use case for many organizations that want to keep their data inhouse, 
 and in this small project I experiment with Go as an effective choice for building such applications.
-To grow into a real-world application, we would need to add standard features such as account management, conversation history,
-file upload and processing, and professional UI. However, aside from the UI, Go already provides robust standard packages
-that allow these features to be implemented effectively.
 
 ## Build, install and run
 
