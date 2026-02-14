@@ -1,3 +1,3 @@
-module github.com/agerasimovski/llmapi
+module github.com/agerasimovski/chatlocal/llmapi
 
 go 1.25.5

@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Log in — Asklocal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #ffffff;
+            --text: #0d0d0d;
+            --text-muted: #6e6e80;
+            --border: #e5e5e5;
+            --input-bg: #f7f7f8;
+            --primary: #3f4241;
+            --primary-hover: #3f4241;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
+            background: var(--bg);
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+
+        .card {
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 15px;
+            margin: 0 0 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 6px;
+            color: var(--text);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            font-family: inherit;
+            font-size: 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--input-bg);
+            color: var(--text);
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 1px var(--primary);
+        }
+
+        .password-wrap {
+            position: relative;
+        }
+
+        .password-wrap input {
+            padding-right: 44px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            padding: 6px;
+            cursor: pointer;
+            color: var(--text-muted);
+            border-radius: 4px;
+        }
+
+        .password-toggle:hover {
+            color: var(--text);
+            background: rgba(0,0,0,0.05);
+        }
+
+        .error {
+            font-size: 14px;
+            color: #c53030;
+            margin-bottom: 12px;
+            display: none;
+        }
+
+        .error.visible {
+            display: block;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 12px 16px;
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: var(--primary-hover);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--border);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--input-bg);
+            color: var(--text);
+        }
+
+        .actions {
+            margin-top: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1 class="logo">Chat Local</h1>
+        <p class="subtitle">Log in or create an account to continue.</p>
+
+        <div id="error" class="error"></div>
+
+        <form id="login-form">
+            <div class="form-group">
+                <label for="username">Email</label>
+                <input type="email" id="username" name="username" required autocomplete="email" placeholder="you@example.com">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="password-wrap">
+                    <input type="password" id="password" name="password" required minlength="8" autocomplete="current-password" placeholder="••••••••">
+                    <button type="button" class="password-toggle" id="password-toggle" aria-label="Show password">
+                        <svg id="eye-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                            <circle cx="12" cy="12" r="3"/>
+                        </svg>
+                        <svg id="eye-off-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:none">
+                            <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                            <line x1="1" y1="1" x2="23" y2="23"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary" id="login-btn">Log in</button>
+        </form>
+
+        <div class="actions">
+            <button type="button" class="btn btn-secondary" id="register-btn">Create account</button>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('login-form');
+        const errorEl = document.getElementById('error');
+        const loginBtn = document.getElementById('login-btn');
+        const registerBtn = document.getElementById('register-btn');
+
+        function showError(msg) {
+            errorEl.textContent = msg;
+            errorEl.classList.add('visible');
+        }
+
+        function hideError() {
+            errorEl.classList.remove('visible');
+        }
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            hideError();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            if (!username || !password) {
+                showError('Email and password are required.');
+                return;
+            }
+            loginBtn.disabled = true;
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                    credentials: 'include'
+                });
+                if (res.ok) {
+                    window.location.href = '/';
+                    return;
+                }
+                const text = await res.text();
+                showError(text || 'Log in failed.');
+            } finally {
+                loginBtn.disabled = false;
+            }
+        });
+
+        document.getElementById('password-toggle').addEventListener('click', () => {
+            const input = document.getElementById('password');
+            const btn = document.getElementById('password-toggle');
+            const eye = document.getElementById('eye-icon');
+            const eyeOff = document.getElementById('eye-off-icon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                eye.style.display = 'none';
+                eyeOff.style.display = 'block';
+                btn.setAttribute('aria-label', 'Hide password');
+            } else {
+                input.type = 'password';
+                eye.style.display = 'block';
+                eyeOff.style.display = 'none';
+                btn.setAttribute('aria-label', 'Show password');
+            }
+        });
+
+        registerBtn.addEventListener('click', async () => {
+            hideError();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            if (!username || !password) {
+                showError('Email and password are required.');
+                return;
+            }
+            if (password.length < 8) {
+                showError('Password must be at least 8 characters long.');
+                return;
+            }
+            registerBtn.disabled = true;
+            try {
+                const res = await fetch('/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ username, password }),
+                    credentials: 'include'
+                });
+                if (res.ok) {
+                    window.location.href = '/';
+                    return;
+                }
+                const text = await res.text();
+                let msg = 'Registration failed.';
+                try {
+                    const data = JSON.parse(text);
+                    if (data.error) msg = data.error;
+                } catch (_) {
+                    if (text) msg = text;
+                }
+                showError(msg);
+            } finally {
+                registerBtn.disabled = false;
+            }
+        });
+    </script>
+</body>
+</html>
