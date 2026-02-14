@@ -83,7 +83,7 @@ systemctl start ollama
 Run chatlocal:
 
 ```bash
-./chatlocal -web localhost:8080 -llm localhost:11434/api/generate -model gemma3
+./chatlocal -web localhost:8080 -data data -llm localhost:11434/api/generate -model gemma3
 ```
 
 Then open [http://localhost:8080](http://localhost:8080) in your browser, register an account, and start chatting.
