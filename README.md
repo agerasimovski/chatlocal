@@ -121,4 +121,4 @@ chatlocal/
 
 ## Developed By
 
-This application was developed by **Cursor AI** (powered by Claude), an AI coding assistant by [Anysphere](https://anysphere.inc/). The entire codebase -- backend, frontend, architecture, and documentation -- was authored through AI-assisted development within the Cursor IDE.
+This application was written by **Cursor AI** (powered by Claude), an AI coding assistant by [Anysphere](https://anysphere.inc/). The entire codebase -- backend, frontend, architecture, and documentation -- was authored through AI-assisted development within the Cursor IDE.
